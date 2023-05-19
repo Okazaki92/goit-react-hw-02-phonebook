@@ -1,13 +1,18 @@
 import propTypes from 'prop-types';
+import styles from './ConstactList.module.css';
 
 export const ContactList = ({ contacts, deleteContact }) => {
   return (
-    <ul>
+    <ul className={styles.list}>
       {contacts.map(({ id, name, number }) => (
-        <li key={id}>
-          <p>{name}</p>
-          <p>{number}</p>
-          <button type="submit" onClick={() => deleteContact(id)}>
+        <li className={styles.list_item} key={id}>
+          <p className="list_text">{name}</p>
+          <p className="list_text">{number}</p>
+          <button
+            className={styles.list_button}
+            type="submit"
+            onClick={() => deleteContact(id)}
+          >
             Delete
           </button>
         </li>

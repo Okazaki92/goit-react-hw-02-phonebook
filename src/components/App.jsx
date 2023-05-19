@@ -19,13 +19,16 @@ export class App extends Component {
   };
 
   addContact = ({ name, number }) => {
+    const checkContact = this.state.contacts.find(
+      contact => contact.name.toLocaleLowerCase() === name.toLowerCase()
+    );
+    if (checkContact) {
+      Notiflix.Notify.failure('The number is already in the phonebook');
+      return;
+    }
     const id = nanoid();
     const newContacts = [...this.state.contacts, { id, name, number }];
-    this.state.contacts.forEach(contact => {
-      contact.name.toLowerCase() === name.toLowerCase()
-        ? Notiflix.Notify.failure(`${name} is already in Phonebook`)
-        : this.setState({ contacts: newContacts });
-    });
+    this.setState({ contacts: newContacts });
   };
 
   deleteContact = id => {
