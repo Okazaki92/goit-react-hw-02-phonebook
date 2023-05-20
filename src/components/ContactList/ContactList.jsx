@@ -1,7 +1,7 @@
 import propTypes from 'prop-types';
 import styles from './ConstactList.module.css';
 
-export const ContactList = ({ contacts, deleteContact }) => {
+export const ContactList = ({ contacts, onDeleteContact }) => {
   return (
     <ul className={styles.list}>
       {contacts.map(({ id, name, number }) => (
@@ -11,7 +11,7 @@ export const ContactList = ({ contacts, deleteContact }) => {
           <button
             className={styles.list_button}
             type="submit"
-            onClick={() => deleteContact(id)}
+            onClick={() => onDeleteContact(id)}
           >
             Delete
           </button>

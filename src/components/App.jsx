@@ -19,12 +19,11 @@ export class App extends Component {
   };
 
   addContact = ({ name, number }) => {
-    const checkContact = this.state.contacts.find(
+    const isContactInPhonebook = this.state.contacts.find(
       contact => contact.name.toLocaleLowerCase() === name.toLowerCase()
     );
-    if (checkContact) {
-      Notiflix.Notify.failure('The number is already in the phonebook');
-      return;
+    if (isContactInPhonebook) {
+      return Notiflix.Notify.failure('The number is already in the phonebook');
     }
     const id = nanoid();
     const newContacts = [...this.state.contacts, { id, name, number }];
@@ -58,11 +57,11 @@ export class App extends Component {
       <div className="container">
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.addContact} />
-        <Filter value={filter} onChange={this.filterContacts} />
+        <Filter value={filter} onChangeFilter={this.filterContacts} />
         <h2>Contacts</h2>
         <ContactList
           contacts={this.getFilteredContacts()}
-          deleteContact={this.deleteContact}
+          onDeleteContact={this.deleteContact}
         />
       </div>
     );

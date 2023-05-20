@@ -1,14 +1,14 @@
 import propTypes from 'prop-types';
 import styles from './Filter.module.css';
 
-export const Filter = ({ value, onChange }) => {
+export const Filter = ({ value, onChangeFilter }) => {
   return (
     <div className={styles.filter}>
       <h2 className="filter_header">Search Contact by Name</h2>
       <input
         className={styles.filter_input}
         value={value}
-        onChange={onChange}
+        onChange={onChangeFilter}
         type="text"
       />
     </div>
